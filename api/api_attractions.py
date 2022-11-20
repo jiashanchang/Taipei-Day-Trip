@@ -29,10 +29,7 @@ def get_api_attractions_list():
             all_data = cursor.fetchall()
             attractions_list = []
             for detail_data in all_data:
-                images_list = []
-                images = detail_data["images"]
-                new_images_url = json.loads(images)
-                images_list.append(new_images_url)
+                new_images_url = json.loads(detail_data["images"])
                 attractions_list.append({
                     "id": detail_data["id"],
                     "name": detail_data["name"],
@@ -43,7 +40,7 @@ def get_api_attractions_list():
                     "mrt": detail_data["mrt"],
                     "lat": detail_data["lat"],
                     "lng": detail_data["lng"],
-                    "images": images_list
+                    "images": new_images_url
                 })
             if next_page > query_page:
                 query_page += 1
@@ -72,10 +69,7 @@ def get_api_attractions_list():
             all_data = cursor.fetchall()
             attractions_list = []
             for detail_data in all_data:
-                images_list = []
-                images = detail_data["images"]
-                new_images_url = json.loads(images)
-                images_list.append(new_images_url)
+                new_images_url = json.loads(detail_data["images"])
                 attractions_list.append({
                     "id": detail_data["id"],
                     "name": detail_data["name"],
@@ -86,7 +80,7 @@ def get_api_attractions_list():
                     "mrt": detail_data["mrt"],
                     "lat": detail_data["lat"],
                     "lng": detail_data["lng"],
-                    "images": images_list
+                    "images": new_images_url
                 })
             if next_page > query_page:
                 query_page += 1
