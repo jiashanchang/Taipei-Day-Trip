@@ -15,43 +15,30 @@ def get_api_attraction_id(attractionId):
         # attractionId：根據景點編號取得景點資料
         connection_object = taipei_pool.get_connection()
         cursor = connection_object.cursor(dictionary = True)
-        cursor.execute("SELECT COUNT(`id`) FROM `attractions`;")
-        all_count = cursor.fetchone()
-        all_count = all_count["COUNT(`id`)"]
-        all_count = int(all_count)
         attractionId = int(attractionId)
         cursor.execute("SELECT * FROM `attractions` WHERE `id`= %s", [attractionId])
-        one_data = cursor.fetchall()
-        attractions_list = []
-        for detail_data in one_data:
-            images_list = []
-            images = detail_data["images"]
-            new_images_url = json.loads(images)
-            images_list.append(new_images_url)
-            attractions_list.append({
-                "id": detail_data["id"],
-                "name": detail_data["name"],
-                "category": detail_data["category"],
-                "description": detail_data["description"],
-                "address": detail_data["address"],
-                "transport": detail_data["transport"],
-                "mrt": detail_data["mrt"],
-                "lat": detail_data["lat"],
-                "lng": detail_data["lng"],
-                "images": images_list
+        detail_data = cursor.fetchone()
+        if detail_data != None:
+            new_images_url = json.loads(detail_data["images"])
+            return jsonify({
+                "data": {
+                    "id": detail_data["id"],
+                    "name": detail_data["name"],
+                    "category": detail_data["category"],
+                    "description": detail_data["description"],
+                    "address": detail_data["address"],
+                    "transport": detail_data["transport"],
+                    "mrt": detail_data["mrt"],
+                    "lat": detail_data["lat"],
+                    "lng": detail_data["lng"],
+                    "images": new_images_url
+                }
             })
-        if all_count >= attractionId:
-            return jsonify({"data": attractions_list})
-        elif all_count < attractionId:
+        else:
             return jsonify({
                 "error": True,
                 "message": "景點編號不正確"
             }),400
-        else:
-            return jsonify({
-                "error": True,
-                "message": "伺服器內部錯誤"
-            }),500
 
     except Error as e:
         print("Error", e)
