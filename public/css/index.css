@@ -92,7 +92,7 @@ body {
   width: 480px;
 }
 
-input {
+#inputCategories {
   width: 370px;
   height: 16px;
   padding: 15px;
@@ -165,8 +165,8 @@ input {
 }
 
 .picture {
-  height: 196px;
-  width: 268px;
+  height: 197px;
+  width: 100%;
   font-size: 20px;
   position: relative;
   border-width: thin thin 0px thin;
@@ -202,7 +202,7 @@ input {
 
 .detail {
   position: relative;
-  width: 100%;
+  width: 268px;
   height: 44px;
   background-color: #ffffff;
   border-width: 0px thin thin thin;
@@ -241,7 +241,7 @@ footer {
 
 @media (max-width: 1200px) {
   #main {
-    width: 90%;
+    width: 900px;
     grid-template-columns: repeat(3, 270px);
     grid-template-rows: repeat(3, 242px);
   }
@@ -259,7 +259,7 @@ footer {
   .search {
     width: 310px;
   }
-  input {
+  #inputCategories {
     width: 200px;
   }
   #main {
@@ -283,5 +283,8 @@ footer {
   .picture img {
     width: 100%;
     height: 100%;
+  }
+  .detail{
+    width: 319px;
   }
 }

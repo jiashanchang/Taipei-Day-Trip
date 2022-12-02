@@ -2,6 +2,7 @@ let isLoading = false;
 let pageNumber = 0;
 let nextPage;
 let keywordValue = null;
+let id = 1;
 
 loadAttractions();
 searchCategories();
@@ -24,6 +25,10 @@ function loadAttractions() {
       for (let i = 0; i < newData.length; i++) {
         let mainElement = document.getElementById("main");
 
+        let aElement = document.createElement("a");
+        aElement.setAttribute("href", `/attraction/${id}`);
+        id += 1;
+
         let divElement = document.createElement("div");
         divElement.setAttribute("class", "picture");
 
@@ -35,21 +40,24 @@ function loadAttractions() {
 
         let imageElement = document.createElement("img");
         imageElement.setAttribute("src", newData[i].images[0]);
-        divElement.appendChild(imageElement);
 
         let placename = document.createElement("div");
-        let textPlace = document.createTextNode(newData[i].name);
         placename.setAttribute("class", "placename");
+        let textPlace = document.createTextNode(newData[i].name);
 
         let mrt = document.createElement("div");
-        let textMRT = document.createTextNode(newData[i].mrt);
         mrt.setAttribute("class", "mrt");
+        let textMRT = document.createTextNode(newData[i].mrt);
 
         let category = document.createElement("div");
-        let textCategory = document.createTextNode(newData[i].category);
         category.setAttribute("class", "category");
+        let textCategory = document.createTextNode(newData[i].category);
 
-        mainElement.appendChild(divElement);
+        mainElement.appendChild(aElement);
+
+        aElement.appendChild(divElement);
+
+        divElement.appendChild(imageElement);
 
         divElement.appendChild(placeElement);
         placeElement.appendChild(placename);
