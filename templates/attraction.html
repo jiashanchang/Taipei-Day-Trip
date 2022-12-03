@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/attraction.css" />
+    <title>Taipei Trip 台北一日遊 2.0</title>
+  </head>
+  <body>
+    <div id="planning">
+      <div class="top">
+        <div class="topTitle">
+          <div class="taipei">台北一日遊</div>
+          <div class="select">
+            <div class="function">登入/註冊</div>
+            <div class="schedule">預定行程</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="attraction">
+        <div id="container">
+          <div class="wrapper">
+            <div id="attractionImages"></div>
+            <div id="clickLeft" onclick="startClick(-1)">
+              <img src="/images/icon_left.png" />
+            </div>
+            <div id="clickRight" onclick="startClick(1)">
+              <img src="/images/icon_right.png" />
+            </div>
+            <div id="collectDot"></div>
+          </div>
+          <div id="introduction">
+            <div id="attractionName"></div>
+            <div id="attractionLocation"></div>
+
+            <div id="information">
+              <div class="book">訂購導覽行程</div>
+              <div class="service">
+                <span>以此景點為中心的一日行程，帶您探索城市角落故事</span>
+              </div>
+              <div class="date">
+                <span>選擇日期：</span>
+                <input type="date" id="inputDate" />
+              </div>
+
+              <div class="time">
+                <span id="choose">選擇時間：</span>
+                <input
+                  type="radio"
+                  id="forenoonRadio"
+                  name="time"
+                  value="forenoonRadio"
+                  checked
+                />
+                <label for="forenoonRadio">上半天</label>
+                <input
+                  type="radio"
+                  name="time"
+                  id="afternoonRadio"
+                  value="afternoonRadio"
+                />
+                <label for="afternoonRadio">下半天</label>
+              </div>
+              <div class="fee">
+                <span>導覽費用：</span>
+                <span id="cost">新台幣 2000 元</span>
+              </div>
+              <button id="reservation">開始預約行程</button>
+            </div>
+          </div>
+        </div>
+        <div id="under">
+          <div id="line"></div>
+          <div id="attractionDescription"></div>
+          <div id="attractionAddress">景點地址：</div>
+          <div id="attractionTransport">交通方式：</div>
+        </div>
+      </div>
+
+      <footer>COPYRIGHT © 2022 台北一日遊</footer>
+    </div>
+    <script type="text/javascript" src="/js/attraction.js"></script>
+  </body>
+</html>
