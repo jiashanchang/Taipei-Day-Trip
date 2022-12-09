@@ -10,17 +10,54 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/index.css" media="all" />
-
+    <link rel="stylesheet" href="/css/user.css" media="all" />
     <title>Taipei Trip 台北一日遊 2.0</title>
   </head>
   <body>
     <div id="planning">
+      <div id="hidden"></div>
       <div class="top">
         <div class="topTitle">
-          <div class="taipei">台北一日遊</div>
+          <a href="/"><div class="taipei">台北一日遊</div></a>
           <div class="select">
-            <div class="function">登入/註冊</div>
+            <div class="function" onclick="homeLogin();">登入/註冊</div>
+            <div class="logout" onclick="startLogout();">登出系統</div>
             <div class="schedule">預定行程</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="loginForm">
+        <div id="cover">
+          <div id="loginTitle">登入會員帳號</div>
+          <img id="closeLogin" src="/images/icon_x.png" />
+          <input type="text" id="loginEmail" placeholder="輸入電子信箱" />
+          <input type="password" id="loginPassword" placeholder="輸入密碼" />
+          <button type="submit" id="login" onclick="startLogin();">
+            登入帳戶
+          </button>
+          <div id="loginMessage"></div>
+          <div id="remind">
+            <div id="notYetAccount">還沒有帳戶？</div>
+            <div id="clickRegister">點此註冊</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="registerForm">
+        <div id="cover">
+          <div id="registerTitle">註冊會員帳號</div>
+          <img id="closeRegister" src="/images/icon_x.png" />
+          <input type="text" id="registerName" placeholder="輸入姓名" />
+          <input type="text" id="registerEmail" placeholder="輸入電子信箱" />
+          <input type="password" id="registerPassword" placeholder="輸入密碼" />
+          <button type="submit" id="register" onclick="startRegister();">
+            註冊新帳戶
+          </button>
+          <div id="registerMessage"></div>
+          <div id="remind">
+            <div id="alreadyAccount">已經有帳戶了？</div>
+            <div id="clickLogin">點此登入</div>
           </div>
         </div>
       </div>
@@ -48,5 +85,6 @@
       <footer>COPYRIGHT © 2022 台北一日遊</footer>
     </div>
     <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/user.js"></script>
   </body>
 </html>

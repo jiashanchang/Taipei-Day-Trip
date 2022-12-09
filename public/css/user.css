@@ -1,0 +1,126 @@
+#hidden {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  top: 0;
+  z-index: 2;
+  display: none;
+}
+
+#loginForm, #registerForm {
+  position: fixed;
+  transform: translate(-170px,0px);
+  top: 80px;
+  left: 50%;
+  width: 340px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 60px #AAAAAA;
+  border-radius: 6px;
+  z-index: 2;
+  display: none;
+}
+
+#cover {
+  background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+  background-size: 340px 10px;;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+}
+
+#loginTitle, #registerTitle {
+  padding-top: 10px;
+  height: 47px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666666;
+  display: flex;
+  justify-content: center;    
+  align-content: center;      
+  flex-wrap: wrap;
+}
+
+#closeLogin, #closeRegister {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 17px;
+  z-index: 1;
+}
+
+input {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+input[placeholder] {
+  padding: 15px;
+  font-weight: bold;
+}
+
+#loginEmail, #loginPassword, #registerName, #registerEmail, #registerPassword {
+  width: 276px;
+  height: 13px;
+  font-size: 16px;
+  color: #757575;
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+}
+
+#login, #register {
+  width: 310px;
+  height: 47px;
+  background: #448899;
+  border-radius: 5px;
+  font-size: 19px;
+  color: #FFFFFF;
+  cursor: pointer;
+  border-radius: 5px;
+  border-style: none;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+#login:hover, #register:hover {
+  box-shadow: inset 0 0 3px 1px #ffffff;
+}
+
+#login:active, #register:active {
+  box-shadow: inset 0 0 5px 1px #ffffff;
+}
+
+#loginMessage, #registerMessage {
+  display: flex;
+  justify-content: center;    
+  align-content: center;      
+  flex-wrap: wrap;
+  padding-bottom: 15px;
+}
+
+#remind {
+  display: flex;
+  justify-content: center;    
+  align-content: center;      
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+#notYetAccount, #alreadyAccount {
+  float: left;
+}
+
+#clickRegister, #clickLogin {
+  float: left;
+  cursor: pointer;
+}
+
+#clickRegister:hover, #clickLogin:hover {
+  color: red;
+  text-decoration: underline;
+  transform: scale(1.05);
+}
