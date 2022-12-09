@@ -73,6 +73,10 @@
     cursor: pointer;
 }
 
+#clickLeft img:hover {
+    transform: scale(0.95);
+}
+
 #clickRight img {
     position: absolute;
     width: 36px;
@@ -80,6 +84,10 @@
     top: 50%;
     right: 10px;
     cursor: pointer;
+}
+
+#clickRight img:hover {
+    transform: scale(0.95);
 }
 
 #introduction {

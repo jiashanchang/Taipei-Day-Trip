@@ -35,6 +35,11 @@ body {
   line-height: 34px;
   margin-left: 10px;
   color: #448899;
+  text-decoration: none;
+}
+
+.top .taipei:hover {
+  transform: scale(1.1);
 }
 
 .top .schedule {
@@ -46,6 +51,10 @@ body {
   color: #666666;
 }
 
+.top .schedule:hover {
+  transform: scale(1.2);
+}
+
 .top .function {
   font-size: 16px;
   float: right;
@@ -53,6 +62,24 @@ body {
   cursor: pointer;
   margin-right: 15px;
   color: #666666;
+}
+
+.top .function:hover {
+  transform: scale(1.2);
+}
+
+.top .logout {
+  font-size: 16px;
+  float: right;
+  line-height: 34px;
+  cursor: pointer;
+  margin-right: 15px;
+  color: #666666;
+  display: none;
+}
+
+.top .logout:hover {
+  transform: scale(1.2);
 }
 
 #background_101 {
@@ -103,6 +130,8 @@ body {
   border-radius: 5px 0px 0px 5px;
   border: 0;
   margin-left: 20px;
+  margin-right: 0;
+  margin-bottom: 0;
 }
 
 #searchKeyword {
@@ -166,14 +195,18 @@ body {
   justify-content: center;
 }
 
+#main a:hover {
+  color: #666666;
+  box-shadow: 0px 10px 10px -5px;
+  border-radius: 0px 0px 5px 5px;
+  transform: scale(1.05);
+}
+
 .picture {
   height: 197px;
   width: 100%;
   font-size: 20px;
   position: relative;
-  border-width: thin thin 0px thin;
-  border-style: solid solid solid solid;
-  border-color: #e0e0e0 #e0e0e0 #e0e0e0 #e0e0e0;
   border-radius: 5px 5px 0px 0px;
 }
 
