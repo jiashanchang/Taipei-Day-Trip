@@ -35,8 +35,8 @@
   font-weight: bold;
   color: #666666;
   display: flex;
-  justify-content: center;    
-  align-content: center;      
+  justify-content: center;
+  align-content: center;
   flex-wrap: wrap;
 }
 
@@ -96,8 +96,8 @@ input[placeholder] {
 
 #loginMessage, #registerMessage {
   display: flex;
-  justify-content: center;    
-  align-content: center;      
+  justify-content: center;
+  align-content: center;
   flex-wrap: wrap;
   padding-bottom: 15px;
 }

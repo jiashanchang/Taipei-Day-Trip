@@ -187,7 +187,6 @@ body {
 #main {
   display: grid;
   grid-template-columns: repeat(4, 270px);
-  grid-template-rows: repeat(3, 242px);
   width: 1200px;
   gap: 30px;
   margin: auto;
@@ -202,7 +201,7 @@ body {
 }
 
 .picture {
-  height: 197px;
+  height: 242px;
   width: 100%;
   font-size: 20px;
   position: relative;
@@ -222,7 +221,7 @@ body {
   height: 40px;
   width: 100%;
   background-color: rgb(0, 0, 0, 0.6);
-  bottom: -1px;
+  bottom: 45px;
   left: 0;
 }
 
@@ -277,7 +276,6 @@ footer {
   #main {
     width: 900px;
     grid-template-columns: repeat(3, 270px);
-    grid-template-rows: repeat(3, 242px);
   }
 }
 
@@ -285,7 +283,6 @@ footer {
   #main {
     width: 90%;
     grid-template-columns: repeat(2, 270px);
-    grid-template-rows: repeat(6, 242px);
   }
 }
 
@@ -299,25 +296,24 @@ footer {
   #main {
     width: 90%;
     grid-template-columns: repeat(1, 321px);
-    grid-template-rows: repeat(12, 235px);
-    gap: 58px;
+    gap: 15px;
   }
   #categoriesList {
     width: 230px;
   }
   #categoriesList li {
-    margin: 5px;
-    padding-top: 10px;
+    margin: 6px;
+    padding-top: 7px; 
   }
   .picture {
-    width: 100%;
-    height: 100%;
+    width: 321px;
+    height: 280px;
   }
   .picture img {
-    width: 100%;
-    height: 100%;
+    width: 321px;
+    height: 235px;
   }
-  .detail{
+  .detail {
     width: 319px;
   }
 }

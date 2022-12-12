@@ -24,11 +24,9 @@ function loadAttractions() {
       for (let i = 0; i < newData.length; i++) {
         const mainElement = document.getElementById("main");
 
-        const aElement = document.createElement("a");
-        aElement.setAttribute("href", `attraction/${newData[i].id}`);
-
-        const divElement = document.createElement("div");
+        const divElement = document.createElement("a");
         divElement.setAttribute("class", "picture");
+        divElement.setAttribute("href", `attraction/${newData[i].id}`);
 
         const placeElement = document.createElement("div");
         placeElement.setAttribute("class", "place");
@@ -51,9 +49,7 @@ function loadAttractions() {
         category.setAttribute("class", "category");
         const textCategory = document.createTextNode(newData[i].category);
 
-        mainElement.appendChild(aElement);
-
-        aElement.appendChild(divElement);
+        mainElement.appendChild(divElement);
 
         divElement.appendChild(imageElement);
 

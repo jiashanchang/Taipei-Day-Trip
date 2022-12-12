@@ -200,7 +200,10 @@ label {
     border-style: none;
     cursor: pointer;
     margin-left: 20px;
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 
 #reservation:hover {
