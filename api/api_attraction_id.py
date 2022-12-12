@@ -38,7 +38,7 @@ def get_api_attraction_id(attractionId):
             return jsonify({
                 "error": True,
                 "message": "景點編號不正確"
-            }),400
+            })
 
     except Error as e:
         print("Error", e)

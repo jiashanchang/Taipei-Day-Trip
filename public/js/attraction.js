@@ -72,6 +72,10 @@ function getEachAttraction(id) {
       transport.appendChild(textTransport);
 
       displayImages(index);
+    })
+    .catch(function (error) {
+      let attractionMessage = document.querySelector(".attraction");
+      attractionMessage.textContent = "景點編號不正確";
     });
 }
 
