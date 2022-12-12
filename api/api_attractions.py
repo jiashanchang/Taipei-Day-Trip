@@ -61,11 +61,11 @@ def get_api_attractions_list():
 
         # 用 keyword 搜尋
         else:
-            cursor.execute(f'SELECT COUNT(*) FROM `attractions` WHERE `category` LIKE "{query_keyword}" OR `name` LIKE "%{query_keyword}%";')
+            cursor.execute("SELECT COUNT(*) FROM `attractions` WHERE `category` = %s or `name` LIKE %s;",[query_keyword, "%"+query_keyword+"%"])
             next_page = cursor.fetchone()
             next_page = next_page["COUNT(*)"]/12
             next_page = int(next_page)
-            cursor.execute(f'SELECT * FROM `attractions` WHERE `category` LIKE "{query_keyword}" OR `name` LIKE "%{query_keyword}%" LIMIT {one_page_count}, 12;')
+            cursor.execute("SELECT * FROM `attractions` WHERE `category` = %s or `name` LIKE %s LIMIT %s, 12;", [query_keyword, "%"+query_keyword+"%", one_page_count])
             all_data = cursor.fetchall()
             attractions_list = []
             for detail_data in all_data:
