@@ -11,29 +11,29 @@ function getEachAttraction(id) {
       return response.json();
     })
     .then(function (eachData) {
-      let attractionImagesElement =
+      const attractionImagesElement =
         document.getElementById("attractionImages");
 
       for (let i = 0; i < eachData.data.images.length; i++) {
-        let imageElement = document.createElement("img");
+        const imageElement = document.createElement("img");
         imageElement.setAttribute("class", "eachImage");
         imageElement.setAttribute("src", eachData.data.images[i]);
         attractionImagesElement.appendChild(imageElement);
 
-        let collectDot = document.getElementById("collectDot");
-        let dotElement = document.createElement("div");
+        const collectDot = document.getElementById("collectDot");
+        const dotElement = document.createElement("div");
         dotElement.setAttribute("class", "dot");
         collectDot.appendChild(dotElement);
       }
 
-      let attractionNameElement = document.getElementById("attractionName");
-      let name = document.createElement("div");
+      const attractionNameElement = document.getElementById("attractionName");
+      const name = document.createElement("div");
       name.setAttribute("class", "name");
-      let textName = document.createTextNode(eachData.data.name);
+      const textName = document.createTextNode(eachData.data.name);
       attractionNameElement.appendChild(name);
       name.appendChild(textName);
 
-      let attractionLocation =
+      const attractionLocation =
         document.getElementById("attractionLocation");
       if (eachData.data.mrt !== null) {
         attractionLocation.innerHTML =
@@ -43,38 +43,38 @@ function getEachAttraction(id) {
           eachData.data.category + " 附近無捷運站可到達";
       }
 
-      let attractionDescriptionElement = document.getElementById(
+      const attractionDescriptionElement = document.getElementById(
         "attractionDescription"
       );
-      let description = document.createElement("div");
+      const description = document.createElement("div");
       description.setAttribute("class", "descriptions");
-      let textDescription = document.createTextNode(
+      const textDescription = document.createTextNode(
         eachData.data.description
       );
       attractionDescriptionElement.appendChild(description);
       description.appendChild(textDescription);
 
-      let attractionAddressElement =
+      const attractionAddressElement =
         document.getElementById("attractionAddress");
-      let address = document.createElement("div");
+      const address = document.createElement("div");
       address.setAttribute("class", "address");
-      let textAddress = document.createTextNode(eachData.data.address);
+      const textAddress = document.createTextNode(eachData.data.address);
       attractionAddressElement.appendChild(address);
       address.appendChild(textAddress);
 
-      let attractionTransportElement = document.getElementById(
+      const attractionTransportElement = document.getElementById(
         "attractionTransport"
       );
-      let transport = document.createElement("div");
+      const transport = document.createElement("div");
       transport.setAttribute("class", "transport");
-      let textTransport = document.createTextNode(eachData.data.transport);
+      const textTransport = document.createTextNode(eachData.data.transport);
       attractionTransportElement.appendChild(transport);
       transport.appendChild(textTransport);
 
       displayImages(index);
     })
     .catch(function (error) {
-      let attractionMessage = document.querySelector(".attraction");
+      const attractionMessage = document.querySelector(".attraction");
       attractionMessage.textContent = "景點編號不正確";
     });
 }
@@ -85,8 +85,8 @@ function getEachAttraction(id) {
 // 再將全部 images 隱藏
 // 最後判斷應該顯示的圖片（[index - 1]）
 // dots 數同理
-let images = document.getElementsByClassName("eachImage");
-let dots = document.getElementsByClassName("dot");
+const images = document.getElementsByClassName("eachImage");
+const dots = document.getElementsByClassName("dot");
 let index = 1;
 
 function displayImages(number) {

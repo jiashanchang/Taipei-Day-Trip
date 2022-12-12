@@ -1,6 +1,6 @@
 // 檢查會員登入狀態
-let checkLogin = document.querySelector(".function");
-let checkLogout = document.querySelector(".logout");
+const checkLogin = document.querySelector(".function");
+const checkLogout = document.querySelector(".logout");
 window.onload = function () {
   fetch("/api/user/auth", { method: "GET" })
     .then((response) => {
@@ -19,11 +19,11 @@ window.onload = function () {
 
 // 跳出式登入 / 註冊視窗
 function homeLogin() {
-  let registerForm = document.getElementById("registerForm");
-  let loginForm = document.getElementById("loginForm");
-  let clickRegister = document.getElementById("clickRegister");
-  let clickLogin = document.getElementById("clickLogin");
-  let hidden = document.getElementById("hidden");
+  const registerForm = document.getElementById("registerForm");
+  const loginForm = document.getElementById("loginForm");
+  const clickRegister = document.getElementById("clickRegister");
+  const clickLogin = document.getElementById("clickLogin");
+  const hidden = document.getElementById("hidden");
 
   hidden.style.display = "block";
   loginForm.style.display = "block";
@@ -49,9 +49,9 @@ closeRegister.addEventListener("click", () => {
 
 // 註冊流程
 function startRegister() {
-  let registerName = document.getElementById("registerName").value;
-  let registerEmail = document.getElementById("registerEmail").value;
-  let registerPassword = document.getElementById("registerPassword").value;
+  const registerName = document.getElementById("registerName").value;
+  const registerEmail = document.getElementById("registerEmail").value;
+  const registerPassword = document.getElementById("registerPassword").value;
 
   fetch("/api/user", {
     method: "POST",
@@ -69,7 +69,7 @@ function startRegister() {
       return response.json();
     })
     .then(function (userRegister) {
-      let registerMessage = document.querySelector("#registerMessage");
+      const registerMessage = document.querySelector("#registerMessage");
       if (userRegister.ok) {
         registerMessage.style.color = "#8ce600";
         registerMessage.textContent = `${userRegister.message}`;
@@ -93,8 +93,8 @@ function startRegister() {
 
 // 登入流程
 function startLogin() {
-  let loginEmail = document.getElementById("loginEmail").value;
-  let loginPassword = document.getElementById("loginPassword").value;
+  const loginEmail = document.getElementById("loginEmail").value;
+  const loginPassword = document.getElementById("loginPassword").value;
 
   fetch("/api/user/auth", {
     method: "PUT",
@@ -111,7 +111,7 @@ function startLogin() {
       return response.json();
     })
     .then(function (userLogin) {
-      let loginMessage = document.querySelector("#loginMessage");
+      const loginMessage = document.querySelector("#loginMessage");
       if (userLogin.ok) {
         location.reload();
       }
