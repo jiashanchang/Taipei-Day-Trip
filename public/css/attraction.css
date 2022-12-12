@@ -200,6 +200,7 @@ label {
     border-style: none;
     cursor: pointer;
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 #reservation:hover {

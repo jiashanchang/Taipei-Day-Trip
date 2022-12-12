@@ -2,8 +2,6 @@ from flask import *
 
 # 匯入 blueprint
 from api.api_attractions import api_attractions_bp
-from api.api_attraction_id import api_attraction_id_bp
-from api.api_categories import api_categories_bp
 from api.api_user import api_user_bp
 
 app=Flask(__name__, static_folder="public", static_url_path="/")
@@ -13,8 +11,6 @@ app.config['JSON_SORT_KEYS'] = False # 關閉 JSON 自動排序
 
 # 將 blueprint 註冊到 app
 app.register_blueprint(api_attractions_bp)
-app.register_blueprint(api_attraction_id_bp)
-app.register_blueprint(api_categories_bp)
 app.register_blueprint(api_user_bp)
 
 # Pages

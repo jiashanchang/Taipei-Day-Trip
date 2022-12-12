@@ -131,7 +131,6 @@ body {
   border: 0;
   margin-left: 20px;
   margin-right: 0;
-  margin-bottom: 0;
 }
 
 #searchKeyword {
@@ -163,20 +162,20 @@ body {
 
 #categoriesList {
   width: 400px;
-  height: 150px;
+  height: 140px;
   background-color: #ffffff;
   box-shadow: 12px 12px 7px rgba(0, 0, 0, 0.5);
   border-radius: 5px 5px 5px 5px;
-  margin-top: 5px;
+  margin-top: 1px;
   display: none;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 #categoriesList li {
   color: black;
   list-style: none;
   float: left;
-  margin: 20px 30px 0px 20px;
+  margin: 15px 40px 3px 20px;
 }
 
 #categoriesList li:hover {
@@ -304,7 +303,6 @@ footer {
     gap: 58px;
   }
   #categoriesList {
-    padding-left: 5px;
     width: 230px;
   }
   #categoriesList li {

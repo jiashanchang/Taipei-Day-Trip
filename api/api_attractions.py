@@ -110,3 +110,72 @@ def get_api_attractions_list():
         if (connection_object.is_connected()):
             cursor.close()
             connection_object.close()
+
+@api_attractions_bp.route("/api/attraction/<attractionId>", methods = ["GET"])
+def get_api_attraction_id(attractionId):
+    try:
+        # attractionId：根據景點編號取得景點資料
+        connection_object = taipei_pool.get_connection()
+        cursor = connection_object.cursor(dictionary = True)
+        attractionId = int(attractionId)
+        cursor.execute("SELECT * FROM `attractions` WHERE `id`= %s", [attractionId])
+        detail_data = cursor.fetchone()
+        if detail_data != None:
+            new_images_url = json.loads(detail_data["images"])
+            return jsonify({
+                "data": {
+                    "id": detail_data["id"],
+                    "name": detail_data["name"],
+                    "category": detail_data["category"],
+                    "description": detail_data["description"],
+                    "address": detail_data["address"],
+                    "transport": detail_data["transport"],
+                    "mrt": detail_data["mrt"],
+                    "lat": detail_data["lat"],
+                    "lng": detail_data["lng"],
+                    "images": new_images_url
+                }
+            })
+        else:
+            return jsonify({
+                "error": True,
+                "message": "景點編號不正確"
+            })
+
+    except Error as e:
+        print("Error", e)
+        return jsonify({
+            "error": True,
+            "message": "伺服器內部錯誤"
+        }),500
+
+    finally:
+        if (connection_object.is_connected()):
+            cursor.close()
+            connection_object.close()
+
+@api_attractions_bp.route("/api/categories", methods = ["GET"])
+def get_api_categories_list():
+    try:
+        # 取得景點分類名稱列表
+        connection_object = taipei_pool.get_connection()
+        cursor=connection_object.cursor(dictionary = True)
+        query_categories = request.args.get("categories")
+        cursor.execute("SELECT DISTINCT `category` FROM `attractions`")
+        all_categories = cursor.fetchall()
+        categories_list = []
+        for detail_categories in all_categories:
+            categories_list.append(detail_categories["category"])
+        return jsonify({"data": categories_list})
+
+    except Error as e:
+        print("Error", e)
+        return jsonify({
+            "error": True,
+            "message": "伺服器內部錯誤"
+        }),500
+
+    finally:
+        if (connection_object.is_connected()):
+            cursor.close()
+            connection_object.close()
