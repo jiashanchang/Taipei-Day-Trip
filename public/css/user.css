@@ -21,6 +21,21 @@
   display: none;
 }
 
+.fadeIn {
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    height: auto;
+    top : 30px;
+  }
+  to {
+    height: auto;
+    top : 80px;
+    }
+}
+
 #cover {
   background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
   background-size: 340px 10px;;
@@ -86,20 +101,31 @@ input[placeholder] {
   margin-bottom: 10px;
 }
 
-#login:hover, #register:hover {
+#login[disabled], #register[disabled] {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#login:hover:enabled, #register:hover:enabled {
   box-shadow: inset 0 0 3px 1px #ffffff;
 }
 
-#login:active, #register:active {
+#login:active:enabled, #register:active:enabled {
   box-shadow: inset 0 0 5px 1px #ffffff;
 }
 
-#loginMessage, #registerMessage {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
+#loginEmailMessage, #loginPasswordMessage, #registerNameMessage, #registerEmailMessage, #registerPasswordMessage {
+  padding-left: 20px;
+  padding-right: 20px;
   padding-bottom: 15px;
+  color: red;
+  display: none;
+}
+
+#loginBottomMessage, #registerBottomMessage {
+  justify-content: center;
+  padding-bottom: 15px;
+  display: none;
 }
 
 #remind {

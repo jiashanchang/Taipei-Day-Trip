@@ -120,3 +120,65 @@ forenoonRadio.addEventListener("click", () => {
 afternoonRadio.addEventListener("click", () => {
   document.getElementById("cost").innerHTML = "新台幣 2500 元";
 });
+
+// 預定行程流程
+const warnReservationForm = document.getElementById("warnForm");
+const warnReservationMessage = document.getElementById("warn");
+const reservation = document.getElementById("reservation");
+reservation.addEventListener("click", () => {
+  const attraction_id = window.location.pathname.split("/")[2];
+  const inputDate = document.getElementById("inputDate").value;
+  const choosetime = document.querySelector("input[name='time']:checked").value;
+  if (choosetime == "forenoonRadio") {
+    time = "早上 9 點到下午 4 點";
+  } else {
+    time = "下午 2 點到晚上 9 點";
+  }
+  const chooseprice = document.querySelector("input[name='time']:checked").value;
+  if (chooseprice == "forenoonRadio") {
+    price = "2000";
+  } else {
+    price = "2500";
+  }
+  fetch("/api/booking", {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "attraction_id": attraction_id,
+      "date": inputDate,
+      "time": time,
+      "price": price,
+    }),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (bookingData) {
+      if (bookingData.ok) {
+        warnReservationForm.style.display = "block";
+        warnReservationMessage.style.color = "#8ce600";
+        warnReservationMessage.textContent = `${bookingData.message}`;
+        setTimeout(function () {
+          warnReservationForm.style.display = "none";
+          window.location.href = "/booking";
+        }, 2500);
+      } else if (bookingData.update) {
+        warnReservationForm.style.display = "block";
+        warnReservationMessage.style.color = "#8ce600";
+        warnReservationMessage.textContent = `${bookingData.message}`;
+        setTimeout(function () {
+          warnReservationForm.style.display = "none";
+        }, 2500);
+      } else {
+        warnReservationForm.style.display = "block";
+        warnReservationMessage.style.color = "red";
+        warnReservationMessage.textContent = "⚠ " + `${bookingData.message}`;
+        setTimeout(function () {
+          warnReservationForm.style.display = "none";
+        }, 2500);
+      }
+    });
+});

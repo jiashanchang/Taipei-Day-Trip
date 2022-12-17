@@ -1,0 +1,196 @@
+#deleteButton {
+    display: flex;
+    margin: 0px 50px 30px 50px;
+}
+
+#confirmDelete, #cancelDelete {
+    width: 60px;
+    margin: auto;
+    padding: 5px;
+    background: #448899;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+}
+
+#confirmDelete:hover, #cancelDelete:hover {
+    box-shadow: inset 0 0 3px 1px #ffffff;
+}
+  
+#confirmDelete:active, #cancelDelete:active {
+    box-shadow: inset 0 0 5px 1px #ffffff;
+}
+
+#travelItinerary {
+    display: grid;
+    grid-template-columns: minmax(360px,1000px);
+    margin-top: 100px;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+#notification {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: none;
+}
+
+#waiting {
+    font-weight: 700;
+    font-size: 19px;
+    color: #666666;
+    margin-bottom: 35px;
+}
+
+#noReservation {
+    font-weight: 500;
+    font-size: 16px;
+    color: #666666;
+}
+
+#openReservation {
+    display: none;
+}
+
+#scheduleForm {
+    display: grid;
+    grid-template-columns: 266px auto;
+    gap: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#left {
+    display: flex;
+    width: 100%;
+    height: 200px;
+}
+
+#attractionImage {
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    object-fit: cover;
+}
+
+#garbageCan {
+    width: 30px;
+    height: 30px;
+    float: right;
+    cursor: pointer;
+}
+
+#taipeiDayTour {
+    font-weight: 700;
+    font-size: 16px;
+    color: #448899;
+    height: 14px;
+    margin-bottom: 30px;
+}
+
+#date, #time, #fee, #location {
+    font-weight: 700;
+    font-size: 16px;
+    color: #666666;
+    height: 14px;
+    margin-bottom: 20px;
+}
+
+#contactForm, #paymentForm {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#line {
+    width: 100%;
+    height: 0px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 44px;
+    margin-top: 40px;
+}
+
+#contactInformation, #creditCardInformation {
+    font-weight: 700;
+    font-size: 19px;
+    color: #666666;
+    margin-bottom: 31px;
+}
+
+#contactName, #contactEmail, #cellphoneNumber, #creditCardNumber, #expirationDate, #creditCardCAPTCHA {
+    font-weight: 500;
+    font-size: 16px;
+    color: #666666;
+}
+
+#bookingName, #bookingEmail, #bookingCellphonedNumber, #bookingCreditCardNumber, #bookingCreditCardExpirationDate, #bookingCreditCardCAPTCHA {
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+#help {
+    font-weight: 700;
+    font-size: 16px;
+    color: #666666;
+    margin-top: 20px;
+}
+
+#finalCheck {
+    text-align: right;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#totalPrice {
+    font-weight: 700;
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 25px;
+}
+
+#remit {
+    width: 173px;
+    height: 36px;
+    background: #448899;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 19px;
+    color: #FFFFFF;
+    border-style: none;
+}
+
+#remit:hover {
+    box-shadow: inset 0 0 3px 1px #ffffff;
+}
+  
+#remit:active {
+    box-shadow: inset 0 0 5px 1px #ffffff;
+}
+
+@media (max-width: 600px) {
+    #waiting {
+        margin-bottom: 7px;
+    }
+    #scheduleForm {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 7px;
+    }
+    #left {
+        height: 256px;
+    }
+    #attractionImage {
+        width: 100%;
+        height: 80%;
+    }
+    #right{
+        position: relative;
+    }
+    #garbageCan {
+        float: none;
+        position: absolute;
+        right: 0;
+        bottom: -25px;
+    }
+}

@@ -17,26 +17,58 @@ window.onload = function () {
     });
 };
 
-// 跳出式登入 / 註冊視窗
-function homeLogin() {
-  const registerForm = document.getElementById("registerForm");
-  const loginForm = document.getElementById("loginForm");
-  const clickRegister = document.getElementById("clickRegister");
-  const clickLogin = document.getElementById("clickLogin");
-  const hidden = document.getElementById("hidden");
+const registerButton = document.getElementById("register");
+const loginButton = document.getElementById("login");
+const registerForm = document.getElementById("registerForm");
+const loginForm = document.getElementById("loginForm");
+const clickRegister = document.getElementById("clickRegister");
+const clickLogin = document.getElementById("clickLogin");
+const hidden = document.getElementById("hidden");
 
+// 會員跳出式登入 / 註冊視窗
+function homeLogin() {
   hidden.style.display = "block";
   loginForm.style.display = "block";
+  loginForm.classList.add("fadeIn");
+  loginButton.disabled = true;
+
   clickRegister.addEventListener("click", () => {
     registerForm.style.display = "block";
     loginForm.style.display = "none";
+    registerButton.disabled = true;
+
     clickLogin.addEventListener("click", () => {
+      loginForm.classList.remove("fadeIn");
       registerForm.style.display = "none";
       loginForm.style.display = "block";
     });
   });
 }
 
+// 開啟會員登入 / 註冊視窗
+const clickHomeLogin = document.querySelector(".function");
+clickHomeLogin.addEventListener("click", homeLogin, false);
+
+// 查看預定之行程
+const clickSchedule = document.querySelector(".schedule");
+clickSchedule.addEventListener("click", () => {
+  fetch("/api/user/auth", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.data != null) {
+        window.location.href = "/booking";
+      } else {
+        homeLogin();
+      }
+    });
+});
+
+// 關閉會員視窗
 closeLogin.addEventListener("click", () => {
   loginForm.style.display = "none";
   hidden.style.display = "none";
@@ -47,8 +79,58 @@ closeRegister.addEventListener("click", () => {
   hidden.style.display = "none";
 });
 
+let checkNameInputValue;
+let checkEmailInputValue;
+let checkPasswordInputValue;
+const registerNameMessage = document.getElementById("registerNameMessage");
+const registerEmailMessage = document.getElementById("registerEmailMessage");
+const registerPasswordMessage = document.getElementById("registerPasswordMessage");
+
+// 驗證會員註冊所輸入之資料
+function checkRegisterInputValue(checkRegister, type) {
+  let nameRule = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{6,15}$/;
+  let emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+  let passwordRule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  if (type == "name") {
+    if (!nameRule.test(checkRegister.value)) {
+      registerNameMessage.style.display = "block";
+      registerNameMessage.textContent = "⚠ 須介於 6-15 字元，可包含中、英文字母、數字或下底線";
+      checkNameInputValue = false;
+    } else {
+      registerNameMessage.style.display = "none";
+      checkNameInputValue = true;
+    }
+  }
+  if (type == "email") {
+    if (!emailRule.test(checkRegister.value)) {
+      registerEmailMessage.style.display = "block";
+      registerEmailMessage.textContent = "⚠ 電子信箱格式錯誤";
+      checkEmailInputValue = false;
+    } else {
+      registerEmailMessage.style.display = "none";
+      checkEmailInputValue = true;
+    }
+  }
+  if (type == "password") {
+    if (!passwordRule.test(checkRegister.value)) {
+      registerPasswordMessage.style.display = "block";
+      registerPasswordMessage.textContent = "⚠ 至少須 8 字元且包含一個字母及一個數字";
+      checkPasswordInputValue = false;
+    } else {
+      registerPasswordMessage.style.display = "none";
+      checkPasswordInputValue = true;
+    }
+  }
+  if (checkNameInputValue && checkEmailInputValue && checkPasswordInputValue) {
+    registerButton.disabled = false;
+  } else {
+    registerButton.disabled = true;
+  }
+}
+
 // 註冊流程
-function startRegister() {
+const register = document.querySelector("#register");
+register.addEventListener("click", () => {
   const registerName = document.getElementById("registerName").value;
   const registerEmail = document.getElementById("registerEmail").value;
   const registerPassword = document.getElementById("registerPassword").value;
@@ -69,30 +151,66 @@ function startRegister() {
       return response.json();
     })
     .then(function (userRegister) {
-      const registerMessage = document.querySelector("#registerMessage");
+      const registerBottomMessage = document.querySelector("#registerBottomMessage");
       if (userRegister.ok) {
-        registerMessage.style.color = "#8ce600";
-        registerMessage.textContent = `${userRegister.message}`;
-        if ((registerMessage.style.display = "flex")) {
-          setTimeout(function () {
-            registerMessage.style.display = "none";
-          }, 3000);
-        }
+        registerBottomMessage.style.display = "flex";
+        registerBottomMessage.style.color = "#8ce600";
+        registerBottomMessage.textContent = `${userRegister.message}`;
+        setTimeout(function () {
+          registerBottomMessage.style.display = "none";
+        }, 3000);
       }
       if (userRegister.error) {
-        registerMessage.style.color = "red";
-        registerMessage.textContent = `${userRegister.message}`;
-        if ((registerMessage.style.display = "flex")) {
-          setTimeout(function () {
-            registerMessage.style.display = "none";
-          }, 3000);
-        }
+        registerBottomMessage.style.display = "flex";
+        registerBottomMessage.style.color = "red";
+        registerBottomMessage.textContent = `${userRegister.message}`;
+        setTimeout(function () {
+          registerBottomMessage.style.display = "none";
+        }, 3000);
       }
     });
+});
+
+const loginEmailMessage = document.getElementById("loginEmailMessage");
+const loginPasswordMessage = document.getElementById("loginPasswordMessage");
+
+// 驗證會員登入所輸入之資料
+function checkLoginInputValue(checkLogin, type) {
+  let emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+  let passwordRule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  if (type == "email") {
+    if (!emailRule.test(checkLogin.value)) {
+      loginEmailMessage.style.display = "block";
+      loginEmailMessage.textContent = "⚠ 電子信箱格式錯誤";
+      checkEmailInputValue = false;
+    } else {
+      loginEmailMessage.style.display = "none";
+      checkEmailInputValue = true;
+    }
+  }
+  if (type == "password") {
+    if (!passwordRule.test(checkLogin.value)) {
+      loginPasswordMessage.style.display = "block";
+      loginPasswordMessage.textContent = "⚠ 至少須 8 字元且包含一個字母及一個數字";
+      checkPasswordInputValue = false;
+    } else {
+      loginPasswordMessage.style.display = "none";
+      checkPasswordInputValue = true;
+    }
+  }
+  if (checkEmailInputValue && checkPasswordInputValue) {
+    loginButton.disabled = false;
+  } else {
+    loginButton.disabled = true;
+  }
 }
 
 // 登入流程
-function startLogin() {
+const successLoginWarnForm = document.getElementById("warnForm");
+const successLoginWarnMessage = document.getElementById("warn");
+const loginBottomMessage = document.querySelector("#loginBottomMessage");
+const login = document.querySelector("#login");
+login.addEventListener("click", () => {
   const loginEmail = document.getElementById("loginEmail").value;
   const loginPassword = document.getElementById("loginPassword").value;
 
@@ -111,24 +229,29 @@ function startLogin() {
       return response.json();
     })
     .then(function (userLogin) {
-      const loginMessage = document.querySelector("#loginMessage");
       if (userLogin.ok) {
-        location.reload();
+        loginForm.style.display = "none";
+        successLoginWarnForm.style.display = "block";
+        successLoginWarnMessage.style.color = "#8ce600";
+        successLoginWarnMessage.textContent = "登入成功";
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
       }
       if (userLogin.error) {
-        loginMessage.style.color = "red";
-        loginMessage.textContent = `${userLogin.message}`;
-        if ((loginMessage.style.display = "flex")) {
-          setTimeout(function () {
-            loginMessage.style.display = "none";
-          }, 3000);
-        }
+        loginBottomMessage.style.display = "flex";
+        loginBottomMessage.style.color = "red";
+        loginBottomMessage.textContent = `${userLogin.message}`;
+        setTimeout(function () {
+          loginBottomMessage.style.display = "none";
+        }, 3000);
       }
     });
-}
+});
 
 // 登出流程
-function startLogout() {
+const logout = document.querySelector(".logout");
+logout.addEventListener("click", () => {
   fetch("/api/user/auth", {
     method: "DELETE",
   })
@@ -140,4 +263,4 @@ function startLogout() {
         location.reload();
       }
     });
-}
+});
