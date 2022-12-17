@@ -121,6 +121,13 @@ afternoonRadio.addEventListener("click", () => {
   document.getElementById("cost").innerHTML = "新台幣 2500 元";
 });
 
+// 預防選到今天之前的日期
+const selectDate = document.getElementById("inputDate");
+selectDate.addEventListener("click", () => {
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementsByName("getTodayDate")[0].setAttribute("min", today);
+});
+
 // 預定行程流程
 const warnReservationForm = document.getElementById("warnForm");
 const warnReservationMessage = document.getElementById("warn");
