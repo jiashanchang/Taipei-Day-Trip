@@ -11,29 +11,29 @@ function getEachAttraction(id) {
       return response.json();
     })
     .then(function (eachData) {
-      let attractionImagesElement =
+      const attractionImagesElement =
         document.getElementById("attractionImages");
 
       for (let i = 0; i < eachData.data.images.length; i++) {
-        let imageElement = document.createElement("img");
+        const imageElement = document.createElement("img");
         imageElement.setAttribute("class", "eachImage");
         imageElement.setAttribute("src", eachData.data.images[i]);
         attractionImagesElement.appendChild(imageElement);
 
-        let collectDot = document.getElementById("collectDot");
-        let dotElement = document.createElement("div");
+        const collectDot = document.getElementById("collectDot");
+        const dotElement = document.createElement("div");
         dotElement.setAttribute("class", "dot");
         collectDot.appendChild(dotElement);
       }
 
-      let attractionNameElement = document.getElementById("attractionName");
-      let name = document.createElement("div");
+      const attractionNameElement = document.getElementById("attractionName");
+      const name = document.createElement("div");
       name.setAttribute("class", "name");
-      let textName = document.createTextNode(eachData.data.name);
+      const textName = document.createTextNode(eachData.data.name);
       attractionNameElement.appendChild(name);
       name.appendChild(textName);
 
-      let attractionLocation =
+      const attractionLocation =
         document.getElementById("attractionLocation");
       if (eachData.data.mrt !== null) {
         attractionLocation.innerHTML =
@@ -43,35 +43,39 @@ function getEachAttraction(id) {
           eachData.data.category + " 附近無捷運站可到達";
       }
 
-      let attractionDescriptionElement = document.getElementById(
+      const attractionDescriptionElement = document.getElementById(
         "attractionDescription"
       );
-      let description = document.createElement("div");
+      const description = document.createElement("div");
       description.setAttribute("class", "descriptions");
-      let textDescription = document.createTextNode(
+      const textDescription = document.createTextNode(
         eachData.data.description
       );
       attractionDescriptionElement.appendChild(description);
       description.appendChild(textDescription);
 
-      let attractionAddressElement =
+      const attractionAddressElement =
         document.getElementById("attractionAddress");
-      let address = document.createElement("div");
+      const address = document.createElement("div");
       address.setAttribute("class", "address");
-      let textAddress = document.createTextNode(eachData.data.address);
+      const textAddress = document.createTextNode(eachData.data.address);
       attractionAddressElement.appendChild(address);
       address.appendChild(textAddress);
 
-      let attractionTransportElement = document.getElementById(
+      const attractionTransportElement = document.getElementById(
         "attractionTransport"
       );
-      let transport = document.createElement("div");
+      const transport = document.createElement("div");
       transport.setAttribute("class", "transport");
-      let textTransport = document.createTextNode(eachData.data.transport);
+      const textTransport = document.createTextNode(eachData.data.transport);
       attractionTransportElement.appendChild(transport);
       transport.appendChild(textTransport);
 
       displayImages(index);
+    })
+    .catch(function (error) {
+      const attractionMessage = document.querySelector(".attraction");
+      attractionMessage.textContent = "景點編號不正確";
     });
 }
 
@@ -81,8 +85,8 @@ function getEachAttraction(id) {
 // 再將全部 images 隱藏
 // 最後判斷應該顯示的圖片（[index - 1]）
 // dots 數同理
-let images = document.getElementsByClassName("eachImage");
-let dots = document.getElementsByClassName("dot");
+const images = document.getElementsByClassName("eachImage");
+const dots = document.getElementsByClassName("dot");
 let index = 1;
 
 function displayImages(number) {
@@ -115,4 +119,73 @@ forenoonRadio.addEventListener("click", () => {
 
 afternoonRadio.addEventListener("click", () => {
   document.getElementById("cost").innerHTML = "新台幣 2500 元";
+});
+
+// 預防選到今天之前的日期
+const selectDate = document.getElementById("inputDate");
+selectDate.addEventListener("click", () => {
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementsByName("getTodayDate")[0].setAttribute("min", today);
+});
+
+// 預定行程流程
+const warnReservationForm = document.getElementById("warnForm");
+const warnReservationMessage = document.getElementById("warn");
+const reservation = document.getElementById("reservation");
+reservation.addEventListener("click", () => {
+  const attraction_id = window.location.pathname.split("/")[2];
+  const inputDate = document.getElementById("inputDate").value;
+  const choosetime = document.querySelector("input[name='time']:checked").value;
+  if (choosetime == "forenoonRadio") {
+    time = "早上 9 點到下午 4 點";
+  } else {
+    time = "下午 2 點到晚上 9 點";
+  }
+  const chooseprice = document.querySelector("input[name='time']:checked").value;
+  if (chooseprice == "forenoonRadio") {
+    price = "2000";
+  } else {
+    price = "2500";
+  }
+  fetch("/api/booking", {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "attraction_id": attraction_id,
+      "date": inputDate,
+      "time": time,
+      "price": price,
+    }),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (bookingData) {
+      if (bookingData.ok) {
+        warnReservationForm.style.display = "block";
+        warnReservationMessage.style.color = "#8ce600";
+        warnReservationMessage.textContent = `${bookingData.message}`;
+        setTimeout(function () {
+          warnReservationForm.style.display = "none";
+          window.location.href = "/booking";
+        }, 2500);
+      } else if (bookingData.update) {
+        warnReservationForm.style.display = "block";
+        warnReservationMessage.style.color = "#8ce600";
+        warnReservationMessage.textContent = `${bookingData.message}`;
+        setTimeout(function () {
+          warnReservationForm.style.display = "none";
+        }, 2500);
+      } else {
+        warnReservationForm.style.display = "block";
+        warnReservationMessage.style.color = "red";
+        warnReservationMessage.textContent = "⚠ " + `${bookingData.message}`;
+        setTimeout(function () {
+          warnReservationForm.style.display = "none";
+        }, 2500);
+      }
+    });
 });
