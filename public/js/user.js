@@ -25,6 +25,10 @@ const clickRegister = document.getElementById("clickRegister");
 const clickLogin = document.getElementById("clickLogin");
 const hidden = document.getElementById("hidden");
 
+// 密碼小眼睛
+const eyeCloseLoginPassword = document.getElementById("eyeCloseLoginPassword");
+const eyeCloseRegisterPassword = document.getElementById("eyeCloseRegisterPassword");
+
 // 會員跳出式登入 / 註冊視窗
 function homeLogin() {
   hidden.style.display = "block";
@@ -33,6 +37,7 @@ function homeLogin() {
   loginButton.disabled = true;
 
   clickRegister.addEventListener("click", () => {
+    eyeCloseRegisterPassword.style.top = "177px";
     registerForm.style.display = "block";
     loginForm.style.display = "none";
     registerButton.disabled = true;
@@ -48,6 +53,30 @@ function homeLogin() {
 // 開啟會員登入 / 註冊視窗
 const clickHomeLogin = document.querySelector(".function");
 clickHomeLogin.addEventListener("click", homeLogin, false);
+
+// 顯示 / 隱藏登入密碼
+eyeCloseLoginPassword.addEventListener("click", () => {
+  let inputLoginPassword = document.getElementById("loginPassword");
+  if (inputLoginPassword.type === "password") {
+    inputLoginPassword.type = "text";
+    eyeCloseLoginPassword.setAttribute("src", "/images/icon_eyes.png");
+  } else {
+    inputLoginPassword.type = "password";
+    eyeCloseLoginPassword.setAttribute("src", "/images/icon_eyelash.png");
+  }
+});
+
+// 顯示 / 隱藏註冊密碼
+eyeCloseRegisterPassword.addEventListener("click", () => {
+  let inputRegisterPassword = document.getElementById("registerPassword");
+  if (inputRegisterPassword.type === "password") {
+    inputRegisterPassword.type = "text";
+    eyeCloseRegisterPassword.setAttribute("src", "/images/icon_eyes.png");
+  } else {
+    inputRegisterPassword.type = "password";
+    eyeCloseRegisterPassword.setAttribute("src", "/images/icon_eyelash.png");
+  }
+});
 
 // 查看預定之行程
 const clickSchedule = document.querySelector(".schedule");
