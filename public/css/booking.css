@@ -1,11 +1,13 @@
 #deleteButton {
     display: flex;
-    margin: 0px 50px 30px 50px;
+    justify-content: center;
+    align-items: center;
+    display: none;
 }
 
 #confirmDelete, #cancelDelete {
-    width: 60px;
-    margin: auto;
+    width: 100px;
+    margin: 0px 10px 20px 10px;
     padding: 5px;
     background: #448899;
     color: #FFFFFF;
@@ -14,8 +16,14 @@
     cursor: pointer;
 }
 
-#confirmDelete:hover, #cancelDelete:hover {
+#confirmDelete:hover {
     box-shadow: inset 0 0 3px 1px #ffffff;
+    background-color: #5da5b7;
+}
+
+#cancelDelete:hover {
+    box-shadow: inset 0 0 3px 1px #ffffff;
+    background-color: #6f6f6f;
 }
   
 #confirmDelete:active, #cancelDelete:active {
@@ -117,16 +125,49 @@
     margin-bottom: 31px;
 }
 
-#contactName, #contactEmail, #cellphoneNumber, #creditCardNumber, #expirationDate, #creditCardCAPTCHA {
+#contactName, #contactEmail, #cellphoneNumber {
     font-weight: 500;
     font-size: 16px;
     color: #666666;
 }
 
-#bookingName, #bookingEmail, #bookingCellphonedNumber, #bookingCreditCardNumber, #bookingCreditCardExpirationDate, #bookingCreditCardCAPTCHA {
+#bookingName, #bookingEmail, #bookingCellphonedNumber {
     background: #FFFFFF;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
+}
+
+#creditCardNumber, #expirationDate, #creditCardCAPTCHA {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+input {
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    color: #666666;
+    font-size: 16px;
+}
+
+.tpfield {
+    height: 40px;
+    width: 200px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+#card-number , #card-expiration-date , #card-ccv {
+    border: 1px solid #E8E8E8;
+    padding-left: 15px;
+    margin-left: 15px;
+    border-radius: 5px;
+    color: #666666;
+    font-size: 16px;
+}
+
+.bookingNameMessage, .bookingEmailMessage, .bookingCellphonedNumberMessage {
+    color: red;
 }
 
 #help {

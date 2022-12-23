@@ -122,12 +122,16 @@ input[placeholder] {
   display: none;
 }
 
+.eyePosition {
+  position: relative;
+}
+
 .eyesImage {
   width: 25px;
   height: 25px;
   position: absolute;
   right: 30px;
-  top: 122px;
+  top: 18.5%;
   cursor: pointer;
 }
 

@@ -1,0 +1,33 @@
+.trip {
+    display: grid;
+    grid-template-columns: minmax(360px,1000px);
+    margin-top: 100px;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.notice {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: none;
+}
+
+.follow {
+    font-weight: 500;
+    font-size: 19px;
+    color: #666666;
+}
+
+.reserveSuccessfully {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.yourOrderNumber {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.transactionNumber {
+    margin-bottom: 20px;
+}

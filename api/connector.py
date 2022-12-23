@@ -1,4 +1,8 @@
 from mysql.connector import pooling
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def connect():
 	return pooling.MySQLConnectionPool(
@@ -7,6 +11,6 @@ def connect():
 		pool_reset_session = True,
 		host = "localhost",
 		user = "root",
-		password = "Password123",
+		password = os.getenv("password"),
 		database = "website"
 	)

@@ -1,13 +1,17 @@
 import mysql.connector
 from mysql.connector import Error
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 try:
     connection = mysql.connector.connect(
         host = "localhost",
         port = "3306",
         user = "root",
-        password = "Password123",
+        password = os.getenv("password"),
         database = "website"
     )
 

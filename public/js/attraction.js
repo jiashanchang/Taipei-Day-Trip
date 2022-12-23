@@ -167,7 +167,7 @@ reservation.addEventListener("click", () => {
       if (bookingData.ok) {
         warnReservationForm.style.display = "block";
         warnReservationMessage.style.color = "#8ce600";
-        warnReservationMessage.textContent = `${bookingData.message}`;
+        warnReservationMessage.textContent = "🅥 " + `${bookingData.message}`;
         setTimeout(function () {
           warnReservationForm.style.display = "none";
           window.location.href = "/booking";
@@ -175,7 +175,7 @@ reservation.addEventListener("click", () => {
       } else if (bookingData.update) {
         warnReservationForm.style.display = "block";
         warnReservationMessage.style.color = "#8ce600";
-        warnReservationMessage.textContent = `${bookingData.message}`;
+        warnReservationMessage.textContent = "🅥 " + `${bookingData.message}`;
         setTimeout(function () {
           warnReservationForm.style.display = "none";
         }, 2500);

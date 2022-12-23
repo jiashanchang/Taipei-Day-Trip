@@ -37,7 +37,7 @@ function homeLogin() {
   loginButton.disabled = true;
 
   clickRegister.addEventListener("click", () => {
-    eyeCloseRegisterPassword.style.top = "177px";
+    eyeCloseRegisterPassword.style.top = "18%";
     registerForm.style.display = "block";
     loginForm.style.display = "none";
     registerButton.disabled = true;
@@ -89,7 +89,7 @@ clickSchedule.addEventListener("click", () => {
       return response.json();
     })
     .then(function (data) {
-      if (data.data != null) {
+      if (data.data) {
         window.location.href = "/booking";
       } else {
         homeLogin();
@@ -235,8 +235,8 @@ function checkLoginInputValue(checkLogin, type) {
 }
 
 // 登入流程
-const successLoginWarnForm = document.getElementById("warnForm");
-const successLoginWarnMessage = document.getElementById("warn");
+const successWarnForm = document.getElementById("warnForm");
+const successWarnMessage = document.getElementById("warn");
 const loginBottomMessage = document.querySelector("#loginBottomMessage");
 const login = document.querySelector("#login");
 login.addEventListener("click", () => {
@@ -260,9 +260,9 @@ login.addEventListener("click", () => {
     .then(function (userLogin) {
       if (userLogin.ok) {
         loginForm.style.display = "none";
-        successLoginWarnForm.style.display = "block";
-        successLoginWarnMessage.style.color = "#8ce600";
-        successLoginWarnMessage.textContent = "登入成功";
+        successWarnForm.style.display = "block";
+        successWarnMessage.style.color = "#8ce600";
+        successWarnMessage.textContent = "🅥 您已成功登入";
         setTimeout(function () {
           location.reload();
         }, 2000);
@@ -289,7 +289,12 @@ logout.addEventListener("click", () => {
     })
     .then(function (userLogout) {
       if (userLogout.ok) {
-        location.reload();
+        successWarnForm.style.display = "block";
+        successWarnMessage.style.color = "#8ce600";
+        successWarnMessage.textContent = "🅥 您已成功登出";
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
       }
     });
 });
