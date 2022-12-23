@@ -126,6 +126,8 @@
 }
 
 #contactName, #contactEmail, #cellphoneNumber {
+    display: flex;
+    align-items: center;
     font-weight: 500;
     font-size: 16px;
     color: #666666;
@@ -135,11 +137,16 @@
     background: #FFFFFF;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
+    width: 185px;
+    margin-top: 12px;
 }
 
 #creditCardNumber, #expirationDate, #creditCardCAPTCHA {
     display: flex;
     align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: #666666;
     margin-bottom: 10px;
 }
 
@@ -151,7 +158,7 @@ input {
 }
 
 .tpfield {
-    height: 40px;
+    height: 48.67px;
     width: 200px;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
@@ -160,7 +167,7 @@ input {
 #card-number , #card-expiration-date , #card-ccv {
     border: 1px solid #E8E8E8;
     padding-left: 15px;
-    margin-left: 15px;
+    margin-left: 20px;
     border-radius: 5px;
     color: #666666;
     font-size: 16px;
