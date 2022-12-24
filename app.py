@@ -1,9 +1,14 @@
 from flask import *
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # 匯入 blueprint
 from api.api_attractions import api_attractions_bp
 from api.api_user import api_user_bp
 from api.api_booking import api_booking_bp
+from api.api_orders import api_orders_bp
 
 app=Flask(__name__, static_folder="public", static_url_path="/")
 app.config["JSON_AS_ASCII"]=False
@@ -14,6 +19,7 @@ app.config['JSON_SORT_KEYS'] = False # 關閉 JSON 自動排序
 app.register_blueprint(api_attractions_bp)
 app.register_blueprint(api_user_bp)
 app.register_blueprint(api_booking_bp)
+app.register_blueprint(api_orders_bp)
 
 # Pages
 @app.route("/")

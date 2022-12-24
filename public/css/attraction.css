@@ -231,7 +231,7 @@ label {
 }
 
 #under {
-    margin: 37px 10px 50px 10px;
+    margin: 40px 10px 50px 10px;
 }
 
 #line {
@@ -302,8 +302,5 @@ label {
     #information {
         margin-left: 10px;
         margin-right: 10px;
-    }
-    #line {
-        margin-top: 40px;
     }
   }

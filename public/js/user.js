@@ -25,6 +25,10 @@ const clickRegister = document.getElementById("clickRegister");
 const clickLogin = document.getElementById("clickLogin");
 const hidden = document.getElementById("hidden");
 
+// 密碼小眼睛
+const eyeCloseLoginPassword = document.getElementById("eyeCloseLoginPassword");
+const eyeCloseRegisterPassword = document.getElementById("eyeCloseRegisterPassword");
+
 // 會員跳出式登入 / 註冊視窗
 function homeLogin() {
   hidden.style.display = "block";
@@ -33,6 +37,7 @@ function homeLogin() {
   loginButton.disabled = true;
 
   clickRegister.addEventListener("click", () => {
+    eyeCloseRegisterPassword.style.top = "18%";
     registerForm.style.display = "block";
     loginForm.style.display = "none";
     registerButton.disabled = true;
@@ -49,6 +54,30 @@ function homeLogin() {
 const clickHomeLogin = document.querySelector(".function");
 clickHomeLogin.addEventListener("click", homeLogin, false);
 
+// 顯示 / 隱藏登入密碼
+eyeCloseLoginPassword.addEventListener("click", () => {
+  let inputLoginPassword = document.getElementById("loginPassword");
+  if (inputLoginPassword.type === "password") {
+    inputLoginPassword.type = "text";
+    eyeCloseLoginPassword.setAttribute("src", "/images/icon_eyes.png");
+  } else {
+    inputLoginPassword.type = "password";
+    eyeCloseLoginPassword.setAttribute("src", "/images/icon_eyelash.png");
+  }
+});
+
+// 顯示 / 隱藏註冊密碼
+eyeCloseRegisterPassword.addEventListener("click", () => {
+  let inputRegisterPassword = document.getElementById("registerPassword");
+  if (inputRegisterPassword.type === "password") {
+    inputRegisterPassword.type = "text";
+    eyeCloseRegisterPassword.setAttribute("src", "/images/icon_eyes.png");
+  } else {
+    inputRegisterPassword.type = "password";
+    eyeCloseRegisterPassword.setAttribute("src", "/images/icon_eyelash.png");
+  }
+});
+
 // 查看預定之行程
 const clickSchedule = document.querySelector(".schedule");
 clickSchedule.addEventListener("click", () => {
@@ -60,7 +89,7 @@ clickSchedule.addEventListener("click", () => {
       return response.json();
     })
     .then(function (data) {
-      if (data.data != null) {
+      if (data.data) {
         window.location.href = "/booking";
       } else {
         homeLogin();
@@ -206,8 +235,8 @@ function checkLoginInputValue(checkLogin, type) {
 }
 
 // 登入流程
-const successLoginWarnForm = document.getElementById("warnForm");
-const successLoginWarnMessage = document.getElementById("warn");
+const successWarnForm = document.getElementById("warnForm");
+const successWarnMessage = document.getElementById("warn");
 const loginBottomMessage = document.querySelector("#loginBottomMessage");
 const login = document.querySelector("#login");
 login.addEventListener("click", () => {
@@ -231,9 +260,9 @@ login.addEventListener("click", () => {
     .then(function (userLogin) {
       if (userLogin.ok) {
         loginForm.style.display = "none";
-        successLoginWarnForm.style.display = "block";
-        successLoginWarnMessage.style.color = "#8ce600";
-        successLoginWarnMessage.textContent = "登入成功";
+        successWarnForm.style.display = "block";
+        successWarnMessage.style.color = "#8ce600";
+        successWarnMessage.textContent = "🅥 您已成功登入";
         setTimeout(function () {
           location.reload();
         }, 2000);
@@ -260,7 +289,12 @@ logout.addEventListener("click", () => {
     })
     .then(function (userLogout) {
       if (userLogout.ok) {
-        location.reload();
+        successWarnForm.style.display = "block";
+        successWarnMessage.style.color = "#8ce600";
+        successWarnMessage.textContent = "🅥 您已成功登出";
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
       }
     });
 });

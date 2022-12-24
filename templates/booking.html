@@ -40,12 +40,19 @@
             placeholder="輸入電子信箱"
           />
           <div id="loginEmailMessage"></div>
-          <input
-            type="password"
-            id="loginPassword"
-            oninput="checkLoginInputValue(this, 'password') "
-            placeholder="輸入密碼"
-          />
+          <div class="eyePosition">
+            <input
+              type="password"
+              id="loginPassword"
+              oninput="checkLoginInputValue(this, 'password') "
+              placeholder="輸入密碼"
+            />
+            <img
+              src="/images/icon_eyelash.png"
+              id="eyeCloseLoginPassword"
+              class="eyesImage"
+            />
+          </div>
           <div id="loginPasswordMessage"></div>
           <button type="submit" id="login">登入帳戶</button>
           <div id="loginBottomMessage"></div>
@@ -74,12 +81,19 @@
             placeholder="輸入電子信箱"
           />
           <div id="registerEmailMessage"></div>
-          <input
-            type="password"
-            id="registerPassword"
-            placeholder="輸入密碼"
-            oninput="checkRegisterInputValue(this, 'password') "
-          />
+          <div class="eyePosition">
+            <input
+              type="password"
+              id="registerPassword"
+              placeholder="輸入密碼"
+              oninput="checkRegisterInputValue(this, 'password') "
+            />
+            <img
+              src="/images/icon_eyelash.png"
+              id="eyeCloseRegisterPassword"
+              class="eyesImage"
+            />
+          </div>
           <div id="registerPasswordMessage"></div>
           <button type="submit" id="register">註冊新帳戶</button>
           <div id="registerBottomMessage"></div>
@@ -128,21 +142,24 @@
             <div id="line"></div>
             <div id="contactInformation">您的聯絡資訊</div>
             <div id="contactName">
-              <span>聯絡姓名：</span>
+              聯絡姓名：
               <input type="text" id="bookingName" placeholder="" />
             </div>
+            <div class="bookingNameMessage"></div>
             <div id="contactEmail">
-              <span>聯絡信箱：</span>
+              聯絡信箱：
               <input type="text" id="bookingEmail" placeholder="" />
             </div>
+            <div class="bookingEmailMessage"></div>
             <div id="cellphoneNumber">
-              <span>手機號碼：</span>
+              手機號碼：
               <input
                 type="text"
                 id="bookingCellphonedNumber"
                 placeholder="請輸入手機號碼"
               />
             </div>
+            <div class="bookingCellphonedNumberMessage"></div>
             <div id="help">
               請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
             </div>
@@ -152,28 +169,16 @@
           <div id="paymentForm">
             <div id="creditCardInformation">信用卡付款資訊</div>
             <div id="creditCardNumber">
-              <span>卡片號碼：</span>
-              <input
-                type="text"
-                id="bookingCreditCardNumber"
-                placeholder="**** **** **** ****"
-              />
+              卡片號碼：
+              <div class="tpfield" id="card-number"></div>
             </div>
             <div id="expirationDate">
-              <span>過期時間：</span>
-              <input
-                type="text"
-                id="bookingCreditCardExpirationDate"
-                placeholder="MM / YY"
-              />
+              過期時間：
+              <div class="tpfield" id="card-expiration-date"></div>
             </div>
             <div id="creditCardCAPTCHA">
-              <span>驗證密碼：</span>
-              <input
-                type="text"
-                id="bookingCreditCardCAPTCHA"
-                placeholder="CVV"
-              />
+              驗證密碼：
+              <div class="tpfield" id="card-ccv"></div>
             </div>
             <div id="line"></div>
           </div>
@@ -187,6 +192,7 @@
 
       <footer>COPYRIGHT © 2022 台北一日遊</footer>
     </div>
+    <script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
     <script type="text/javascript" src="/js/booking.js"></script>
     <script type="text/javascript" src="/js/user.js"></script>
   </body>
