@@ -248,6 +248,12 @@ input {
 }
 
 @media (max-width: 600px) {
+    #waiting {
+        margin-bottom: 7px;
+    }
+    #noReservation {
+        margin-top: 35px;
+    }
     #scheduleForm {
         grid-template-columns: repeat(1, 1fr);
         gap: 7px;
