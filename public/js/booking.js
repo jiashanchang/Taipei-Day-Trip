@@ -37,6 +37,9 @@ const travelLocation = document.getElementById("travelLocation");
 const totalPrice = document.getElementById("totalPrice");
 const noReservation = document.getElementById("noReservation");
 const openReservation = document.getElementById("openReservation");
+const bookingTitle = document.querySelector("title");
+const goHome = document.getElementById("goHome");
+const travelItinerary = document.getElementById("travelItinerary");
 
 let orderAttractionId;
 let orderAttractionName;
@@ -73,9 +76,13 @@ function checkBooking() {
         travelFee.textContent = "新台幣 " + orderFee + " 元";
         travelLocation.textContent = orderAttractionAddress;
         totalPrice.textContent = "總價：新台幣 " + orderFee + " 元";
+        bookingTitle.textContent = "預定行程 - " + orderAttractionName;
       } else {
+        travelItinerary.style.marginBottom = "120px";
         openReservation.style.display = "none";
+        goHome.style.display = "block";
         noReservation.style.display = "block";
+        bookingTitle.textContent = "預定行程 - 暫無預定行程";
       }
     });
 }
@@ -193,18 +200,23 @@ TPDirect.card.setup({
   },
 });
 
-let bookingNameInputValue;
-let bookingEmailInputValue;
+let bookingNameInputValue = true;
+let bookingEmailInputValue = true;
 let bookingCellphonedNumberInputValue;
 const bookingNameMessage = document.querySelector(".bookingNameMessage");
 const bookingEmailMessage = document.querySelector(".bookingEmailMessage");
 const bookingCellphonedNumberMessage = document.querySelector(".bookingCellphonedNumberMessage");
+let nameRule = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{5,8}$/;
 let emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 let phoneRule = /^09[0-9]{8}$/;
 
 bookingName.addEventListener("input", () => {
+  bookingNameInputValue = true;
   if (bookingName.value == "") {
     bookingNameMessage.textContent = "⚠ 必填欄位";
+    bookingNameInputValue = false;
+  } else if (!nameRule.test(bookingName.value)) {
+    bookingNameMessage.textContent = "⚠ 須介於 5-8 字元，可包含中、英文字母、數字或下底線";
     bookingNameInputValue = false;
   } else {
     bookingNameMessage.textContent = "";
@@ -213,6 +225,7 @@ bookingName.addEventListener("input", () => {
 });
 
 bookingEmail.addEventListener("input", () => {
+  bookingEmailInputValue = true;
   if (bookingEmail.value == "") {
     bookingEmailMessage.textContent = "⚠ 必填欄位";
     bookingEmailInputValue = false;
@@ -226,6 +239,7 @@ bookingEmail.addEventListener("input", () => {
 });
 
 bookingCellphonedNumber.addEventListener("input", () => {
+  bookingCellphonedNumberInputValue = false;
   if (bookingCellphonedNumber.value == "") {
     bookingCellphonedNumberMessage.textContent = "⚠ 必填欄位";
     bookingCellphonedNumberInputValue = false;
@@ -241,7 +255,7 @@ bookingCellphonedNumber.addEventListener("input", () => {
 let prime;
 const remit = document.getElementById("remit");
 remit.addEventListener("click", (event) => {
-  if (!bookingNameInputValue && !bookingEmailInputValue && !bookingCellphonedNumberInputValue) {
+  if (!bookingNameInputValue || !bookingEmailInputValue || !bookingCellphonedNumberInputValue) {
     deleteButton.style.display = "none";
     checkWarnForm.style.display = "block";
     checkWarnMessage.style.color = "red";

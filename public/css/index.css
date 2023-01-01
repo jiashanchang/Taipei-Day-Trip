@@ -28,7 +28,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.top .taipei {
+.taipei {
   font-size: 30px;
   font-weight: bold;
   float: left;
@@ -38,24 +38,15 @@ body {
   text-decoration: none;
 }
 
-.top .taipei:hover {
+.taipei:hover {
   transform: scale(1.1);
 }
 
-.top .schedule {
-  font-size: 16px;
-  float: right;
-  line-height: 34px;
-  margin-right: 20px;
-  cursor: pointer;
-  color: #666666;
+.select {
+  position: relative;
 }
 
-.top .schedule:hover {
-  transform: scale(1.2);
-}
-
-.top .function {
+.function {
   font-size: 16px;
   float: right;
   line-height: 34px;
@@ -64,11 +55,7 @@ body {
   color: #666666;
 }
 
-.top .function:hover {
-  transform: scale(1.2);
-}
-
-.top .logout {
+.memberCenter {
   font-size: 16px;
   float: right;
   line-height: 34px;
@@ -78,8 +65,79 @@ body {
   display: none;
 }
 
-.top .logout:hover {
+.schedule {
+  font-size: 16px;
+  float: right;
+  line-height: 34px;
+  margin-right: 20px;
+  cursor: pointer;
+  color: #666666;
+}
+
+.memberMenu {
+  position: absolute;
+  width: 220px;
+  top: 50px;
+  right: 10px;
+  background-color: rgb(0,0,0,0.6);
+  border-radius: 5px;
+  display: none;
+}
+
+#closeMember {
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.welcome {  
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 34px;
+  color: 	#FF0DA6;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.personal, .orderHistory, .home {
+  font-size: 16px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logout {
+  font-size: 16px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.function:hover, .memberCenter:hover, .schedule:hover, #closeMember:hover {
   transform: scale(1.2);
+}
+
+.personal:hover, .orderHistory:hover, .home:hover, .logout:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  text-shadow: -1px -1px 4px #708090,
+  1px -1px 4px #708090,
+  1px 1px 4px #708090,
+  -1px 1px 4px #708090,
+  6px 5px 10px #708090;
+  font-weight: bolder;
 }
 
 #background_101 {

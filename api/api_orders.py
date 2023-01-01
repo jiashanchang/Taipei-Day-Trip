@@ -43,7 +43,7 @@ def create_new_order():
             try:
                 random_number = (random.randrange(1, 9999))
                 current_time = datetime.now()
-                current_time = current_time.strftime('%Y%m%d%H%M')
+                current_time = current_time.strftime("%Y%m%d%H%M")
                 current_order_number = current_time + "-" + str(random_number) + "-" + str(jwt_decode["id"])
                 url = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
                 headers = {
@@ -146,6 +146,58 @@ def get_order(orderNumber):
                 return jsonify({
                     "data": None,
                     "message": "無此付款訂單，請確認訂單號碼"
+                })
+        else:
+            return jsonify({
+                "error": True,
+                "message": "未登入系統，拒絕存取"
+            })
+
+    except Error as e:
+        print("Error", e)
+        return jsonify({
+            "error": True,
+            "message": "伺服器內部錯誤"
+        }),500
+
+    finally:
+        if (connection_object.is_connected()):
+            cursor.close()
+            connection_object.close()
+
+@api_orders_bp.route("/api/past_order", methods=["GET"])
+def get_past_order():
+    try:
+        JWTtoken = request.cookies.get("JWTtoken")
+        connection_object=taipei_pool.get_connection()
+        cursor = connection_object.cursor(buffered = True, dictionary = True)
+        if JWTtoken:
+            jwt_decode = jwt.decode(JWTtoken, "73546jdbfjh34cd", algorithms="HS256")
+            cursor.execute("SELECT * From `taipeiorder` WHERE `member_member_id` = %s ORDER BY `order_number` DESC;", [jwt_decode["id"]])
+            all_order = cursor.fetchall()
+            past_order_list = []
+            if all_order:
+                for detail_order in all_order:
+                    past_order_list.append({
+                        "order_id": detail_order["order_id"],
+                        "order_number": detail_order["order_number"],
+                        "order_price": detail_order["order_price"],
+                        "attraction_id": detail_order["attraction_id"],
+                        "attraction_name": detail_order["attraction_name"],
+                        "attraction_address": detail_order["attraction_address"],
+                        "attraction_image": detail_order["attraction_image"],
+                        "order_date": detail_order["order_date"],
+                        "order_time": detail_order["order_time"],
+                        "member_id": detail_order["member_member_id"],
+                        "contact_name":detail_order["contactname"],
+                        "contact_email":detail_order["contactemail"],
+                        "contact_phone":detail_order["contactphone"]
+                    })
+                return jsonify({"data": past_order_list})
+            else:
+                return jsonify({
+                    "data": None,
+                    "message": "目前暫無歷史訂單"
                 })
         else:
             return jsonify({
