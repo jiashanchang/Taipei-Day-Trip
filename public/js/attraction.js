@@ -33,6 +33,9 @@ function getEachAttraction(id) {
       attractionNameElement.appendChild(name);
       name.appendChild(textName);
 
+      const attractiontitle = document.querySelector("title");
+      attractiontitle.textContent = "導覽景點 - " + `${eachData.data.name}`;
+
       const attractionLocation =
         document.getElementById("attractionLocation");
       if (eachData.data.mrt !== null) {

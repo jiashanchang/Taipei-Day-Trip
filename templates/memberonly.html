@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="/css/index.css" media="all" />
     <link rel="stylesheet" href="/css/attraction.css" media="all" />
     <link rel="stylesheet" href="/css/user.css" media="all" />
-    <link rel="stylesheet" href="/css/thankyou.css" />
-    <title>Taipei Trip 台北一日遊 2.0</title>
+    <link rel="stylesheet" href="/css/memberonly.css" />
+    <title>個人帳戶管理</title>
   </head>
   <body>
     <div id="planning">
@@ -118,20 +118,87 @@
         </div>
       </div>
 
-      <div class="trip">
-        <div class="notice">
-          <div class="follow">
-            <div class="reserveSuccessfully">行程預定成功</div>
-            <div class="yourOrderNumber">您的訂單編號如下：</div>
-            <div class="transactionNumber"></div>
-            <div>請記住此編號，或到會員中心查詢歷史訂單</div>
+      <div class="userManagement">
+        <div class="userData">
+          <div class="personalInformation">會員基本資料維護</div>
+          <div id="contain">
+            <div id="wrapper">
+              <form enctype="multipart/form-data" target="theiframe">
+                <img src="/images/icon_cloud.png" class="headshot" />
+
+                <div class="uploadButton">
+                  <label id="label">
+                    <input type="file" id="choosePhoto" accept="image/*" />
+                    <span class="uploadIcon">➕</span>
+                  </label>
+                </div>
+              </form>
+            </div>
+            <div class="bottom">
+              <button class="confirmUpload">上傳頭貼</button>
+            </div>
+          </div>
+          <div id="intorduction">
+            <div class="above">
+              <div class="revise">
+                會員名稱：
+                <div class="nowName"></div>
+                <input
+                  type="text"
+                  id="newName"
+                  placeholder="請輸入新的會員名稱"
+                />
+              </div>
+
+              <div class="revise">
+                會員信箱：
+                <div class="nowEmail"></div>
+              </div>
+            </div>
+            <div class="bottom">
+              <button id="confirmUpdateName">修改會員名稱</button>
+              <button id="saveUpdateName">儲存修改後資料</button>
+            </div>
+            <div class="showPassword">
+              <div class="userPassword">修改密碼：</div>
+              <div class="revise">
+                舊密碼：
+                <input
+                  type="password"
+                  id="pastPassword"
+                  placeholder="請輸入舊密碼"
+                />
+              </div>
+              <div class="pastPasswordMessage"></div>
+              <div class="revise">
+                新密碼：
+                <input
+                  type="password"
+                  id="newPassword"
+                  placeholder="請輸入新密碼"
+                />
+              </div>
+              <div class="newPasswordMessage"></div>
+              <div class="revise">
+                新密碼確認：
+                <input
+                  type="password"
+                  id="newPasswordAgain"
+                  placeholder="請再次輸入新密碼"
+                />
+              </div>
+              <div class="newPasswordAgainMessage"></div>
+            </div>
+            <div class="bottom">
+              <button id="saveUpdatePassword">變更密碼</button>
+            </div>
+            <iframe id="theiframe" name="theiframe"></iframe>
           </div>
         </div>
       </div>
-
       <footer>COPYRIGHT © 2022 台北一日遊</footer>
     </div>
-    <script type="text/javascript" src="/js/thankyou.js"></script>
+    <script type="text/javascript" src="/js/memberonly.js"></script>
     <script type="text/javascript" src="/js/user.js"></script>
   </body>
 </html>

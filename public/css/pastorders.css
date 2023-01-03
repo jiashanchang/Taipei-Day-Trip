@@ -1,0 +1,85 @@
+.pastOrders {
+    display: grid;
+    grid-template-columns: minmax(360px,1000px);
+    margin-top: 100px;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.pastOrdersList {
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 70px;
+    font-weight: 500;
+    font-size: 19px;
+    color: #666666;
+    display: none;
+}
+
+.waiting {
+    font-weight: 700;
+    font-size: 19px;
+    color: #666666;
+    margin-bottom: 35px;
+}
+
+.dear {
+    font-weight: bold;
+    color: 	#FF0DA6;
+}
+
+.showPastOrderList {
+    display: grid;
+    gap: 80px;
+}
+
+.number {
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    background-size: 100% 10px;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    box-shadow:3px 3px 12px #666666;
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+}
+
+.textTitle {
+    font-weight: bold;
+}
+
+.attractionName {
+    margin-right: 3%;
+}
+
+.attractionButton {
+    background: #448899;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+}
+
+#goHome {
+    width: 154px;
+    height: 36px;
+    font-size: 19px;
+    background: #448899;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#goHome:hover, .attractionButton:hover {
+    box-shadow: inset 0 0 3px 1px #ffffff;
+}
+  
+#goHome:active, .attractionButton:active {
+    box-shadow: inset 0 0 5px 1px #ffffff;
+}

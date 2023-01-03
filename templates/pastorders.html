@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="/css/index.css" media="all" />
     <link rel="stylesheet" href="/css/attraction.css" media="all" />
     <link rel="stylesheet" href="/css/user.css" media="all" />
-    <link rel="stylesheet" href="/css/thankyou.css" />
-    <title>Taipei Trip 台北一日遊 2.0</title>
+    <link rel="stylesheet" href="/css/pastorders.css" />
+    <title>歷史訂單</title>
   </head>
   <body>
     <div id="planning">
@@ -118,20 +118,21 @@
         </div>
       </div>
 
-      <div class="trip">
-        <div class="notice">
-          <div class="follow">
-            <div class="reserveSuccessfully">行程預定成功</div>
-            <div class="yourOrderNumber">您的訂單編號如下：</div>
-            <div class="transactionNumber"></div>
-            <div>請記住此編號，或到會員中心查詢歷史訂單</div>
+      <div class="pastOrders">
+        <div class="pastOrdersList">
+          <div class="waiting">
+            您好，
+            <span class="dear"></span>
+            ，您的歷史訂單如下：
           </div>
+          <div class="showPastOrderList"></div>
+          <a href="/"><button id="goHome">回首頁</button></a>
         </div>
       </div>
 
       <footer>COPYRIGHT © 2022 台北一日遊</footer>
     </div>
-    <script type="text/javascript" src="/js/thankyou.js"></script>
+    <script type="text/javascript" src="/js/pastorders.js"></script>
     <script type="text/javascript" src="/js/user.js"></script>
   </body>
 </html>

@@ -1,0 +1,167 @@
+.userManagement {
+    display: grid;
+    grid-template-columns: minmax(360px,1000px);
+    margin-top: 100px;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.userData {
+    position: relative;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: 500;
+    font-size: 19px;
+    color: #666666;
+    display: none;
+}
+
+.personalInformation{
+    font-weight: 700;
+    font-size: 19px;
+    color: #666666;
+    margin-bottom: 35px;
+}
+
+#contain, #intorduction {
+    display: grid;
+    grid-template-columns: 50% auto;
+    gap: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 50px;
+}
+
+.headshot {
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 0 0 8px #ff9595,
+    0 0 0 25px white,
+   40px 40px #708090,
+   -40px -40px #708090;
+    padding: 10px;
+}
+
+.headshot::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    width: 70%;
+    left: 15%;
+    height: 100px;
+    bottom: 0;
+}
+
+.uploadButton {
+    position: relative;
+    margin-top: 50px;
+}
+
+label {
+    position: relative;
+    top: -120px;
+    left: 68%;
+    cursor: pointer;
+    background: #efefef;
+}
+
+#choosePhoto {
+    display: none;
+}
+
+.uploadIcon {
+    font-weight: bold;
+    font-size: 180%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 20%;
+}
+
+.uploadIcon:hover {
+    transform: scale(1.5);
+}
+
+.confirmUpload, #confirmUpdateName, #saveUpdateName, #saveUpdatePassword {
+    width: 154px;
+    height: 36px;
+    font-size: 19px;
+    background: #448899;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+}
+
+.confirmUpload:hover, #confirmUpdateName:hover, #saveUpdateName:hover, #saveUpdatePassword:hover {
+    box-shadow: inset 0 0 3px 1px #ffffff;
+}
+  
+.confirmUpload:active, #confirmUpdateName:active, #saveUpdateName:active, #saveUpdatePassword:active {
+    box-shadow: inset 0 0 5px 1px #ffffff;
+}
+
+.revise {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+#newName {
+    display: none;
+    margin-top: 12px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#saveUpdateName {
+    display: none;
+}
+
+.userPassword {
+    margin-bottom: 18px;
+}
+
+#pastPassword, #newPassword, #newPasswordAgain {
+    margin-top: 12px;
+}
+
+.pastPasswordMessage, .newPasswordMessage, .newPasswordAgainMessage {
+    color: red;
+    margin-bottom: 5px;
+}
+
+#theiframe {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    #contain, #intorduction {
+        grid-template-columns: repeat(1, 90%);
+        gap: 0;
+        justify-content: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .headshot {
+        width: 90%;
+        height: 90%;
+    }
+    label {
+        left: 83%;
+    }
+    .above {
+        margin-bottom: 50px;
+    }
+    .showPassword {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}

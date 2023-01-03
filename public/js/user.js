@@ -1,21 +1,53 @@
 // 檢查會員登入狀態
 const checkLogin = document.querySelector(".function");
 const checkLogout = document.querySelector(".logout");
+const memberCenter = document.querySelector(".memberCenter");
+const welcome = document.querySelector(".welcome");
+let memberName;
+
 window.onload = function () {
-  fetch("/api/user/auth", { method: "GET" })
-    .then((response) => {
+  fetch("/api/user/auth", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
       return response.json();
     })
-    .then((data) => {
-      if (data.data) {
+    .then(function (check) {
+      if (check.data) {
         checkLogin.style.display = "none";
-        checkLogout.style.display = "block";
+        memberCenter.style.display = "block";
+        memberName = `${check.data.name}`;
       } else {
         checkLogin.style.display = "block";
-        checkLogout.style.display = "none";
+        memberCenter.style.display = "none";
       }
     });
 };
+
+// 開啟 / 關閉會員中心
+const memberMenu = document.querySelector(".memberMenu");
+memberCenter.addEventListener("click", () => {
+  memberMenu.style.display = "block";
+  welcome.textContent = memberName + "，您好";
+});
+
+const closeMember = document.getElementById("closeMember");
+closeMember.addEventListener("click", () => {
+  memberMenu.style.display = "none";
+});
+
+// 查詢歷史訂單
+const orderHistory = document.querySelector(".orderHistory");
+orderHistory.addEventListener("click", () => {
+  window.location.href = "/pastorders";
+});
+
+// 個人帳戶管理
+const personal = document.querySelector(".personal");
+personal.addEventListener("click", () => {
+  window.location.href = "/memberonly";
+});
 
 const registerButton = document.getElementById("register");
 const loginButton = document.getElementById("login");
@@ -117,13 +149,13 @@ const registerPasswordMessage = document.getElementById("registerPasswordMessage
 
 // 驗證會員註冊所輸入之資料
 function checkRegisterInputValue(checkRegister, type) {
-  let nameRule = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{6,15}$/;
+  let nameRule = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{5,8}$/;
   let emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
   let passwordRule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   if (type == "name") {
     if (!nameRule.test(checkRegister.value)) {
       registerNameMessage.style.display = "block";
-      registerNameMessage.textContent = "⚠ 須介於 6-15 字元，可包含中、英文字母、數字或下底線";
+      registerNameMessage.textContent = "⚠ 須介於 5-8 字元，可包含中、英文字母、數字或下底線";
       checkNameInputValue = false;
     } else {
       registerNameMessage.style.display = "none";
@@ -289,6 +321,7 @@ logout.addEventListener("click", () => {
     })
     .then(function (userLogout) {
       if (userLogout.ok) {
+        memberMenu.style.display = "none";
         successWarnForm.style.display = "block";
         successWarnMessage.style.color = "#8ce600";
         successWarnMessage.textContent = "🅥 您已成功登出";

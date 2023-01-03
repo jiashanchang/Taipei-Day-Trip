@@ -58,15 +58,15 @@ CREATE TABLE `booking` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `member_id` bigint NOT NULL,
   `attraction_id` int NOT NULL,
-  `date` varchar(100) NOT NULL,
-  `time` varchar(100) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `time` varchar(50) NOT NULL,
   `price` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`),
   KEY `attraction_id` (`attraction_id`),
   CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
   CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`attraction_id`) REFERENCES `attractions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (2,1,28,'2022-12-28','早上 9 點到下午 4 點',2000);
+INSERT INTO `booking` VALUES (3,1,12,'2023-01-24','早上 9 點到下午 4 點',2000);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `member`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(8) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
@@ -101,7 +101,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'你是我的小蘋果','apple@gmail.com','$2b$12$9hdvxm/zQougQr6XDMg9gOlX0a9qL991MJqahy.gVpq0XAMDDnqnm');
+INSERT INTO `member` VALUES (1,'你是我的小蘋果','apple@gmail.com','$2b$12$vL8FuSyOnKMoQ7T/ITQtSuICCr1Nf6EcpO7TiKwkXbUYFEBX325A6');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,12 +119,12 @@ CREATE TABLE `taipeiorder` (
   `attraction_name` varchar(20) NOT NULL,
   `attraction_address` varchar(30) NOT NULL,
   `attraction_image` varchar(1000) DEFAULT NULL,
-  `order_date` varchar(100) NOT NULL,
-  `order_time` varchar(100) NOT NULL,
+  `order_date` varchar(50) NOT NULL,
+  `order_time` varchar(50) NOT NULL,
   `order_price` int NOT NULL,
   `booking_member_id` bigint DEFAULT NULL,
   `member_member_id` bigint DEFAULT NULL,
-  `contactname` varchar(20) NOT NULL,
+  `contactname` varchar(8) NOT NULL,
   `contactemail` varchar(100) NOT NULL,
   `contactphone` varchar(10) NOT NULL,
   PRIMARY KEY (`order_id`),
@@ -144,7 +144,7 @@ CREATE TABLE `taipeiorder` (
 
 LOCK TABLES `taipeiorder` WRITE;
 /*!40000 ALTER TABLE `taipeiorder` DISABLE KEYS */;
-INSERT INTO `taipeiorder` VALUES (1,'202212231548-5150-1',22,'袖珍博物館','臺北市  中山區建國北路1段 96 號 B1','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000762.jpg','2023-01-03','早上 9 點到下午 4 點',2000,NULL,1,'你是我的小蘋果','apple@gmail.com','0912345678');
+INSERT INTO `taipeiorder` VALUES (1,'202301012008-5922-1',7,'關渡、金色水岸、八里左岸自行車道','臺北市  北投區關渡','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000979.jpg','2023-01-24','早上 9 點到下午 4 點',2000,NULL,1,'你是我的小蘋果','apple@gmail.com','0987654321');
 /*!40000 ALTER TABLE `taipeiorder` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -157,4 +157,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-23 15:50:03
+-- Dump completed on 2023-01-01 20:26:40

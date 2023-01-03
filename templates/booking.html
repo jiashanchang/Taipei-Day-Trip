@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/attraction.css" media="all" />
     <link rel="stylesheet" href="/css/user.css" media="all" />
     <link rel="stylesheet" href="/css/booking.css" />
-    <title>Taipei Trip 台北一日遊 2.0</title>
+    <title>預定行程</title>
   </head>
   <body>
     <div id="planning">
@@ -23,8 +23,16 @@
           <a href="/"><div class="taipei">台北一日遊</div></a>
           <div class="select">
             <div class="function">登入/註冊</div>
-            <div class="logout">登出系統</div>
+            <div class="memberCenter">會員中心</div>
             <div class="schedule">預定行程</div>
+            <div class="memberMenu">
+              <img id="closeMember" src="/images/icon_close.png" />
+              <div class="welcome"></div>
+              <div class="personal">個人帳戶管理</div>
+              <div class="orderHistory">歷史訂單</div>
+              <a href="/"><div class="home">回首頁</div></a>
+              <div class="logout">登出系統</div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,7 +127,10 @@
           <div id="waiting">
             您好，<span id="hello"></span>，待預定的行程如下：
           </div>
-          <div id="noReservation">目前沒有任何等待預定的行程</div>
+          <div id="noReservation">
+            目前沒有任何等待預定的行程
+            <a href="/"><button id="goHome">回首頁</button></a>
+          </div>
         </div>
         <div id="openReservation">
           <div id="scheduleForm">

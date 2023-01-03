@@ -12,8 +12,8 @@ taipei_pool=connector.connect()
 @api_attractions_bp.route("/api/attractions", methods = ["GET"])
 def get_api_attractions_list():
     try:
-        query_page = int(request.args.get("page")) # page：要取得的分頁，每頁 12 筆資料
-        query_keyword = request.args.get("keyword") # keyword：完全比對景點分類、或模糊比對景點名稱，沒給定不做篩選
+        query_page = int(request.args.get("page", 0)) # page：要取得的分頁，每頁 12 筆資料
+        query_keyword = request.args.get("keyword", "") # keyword：完全比對景點分類、或模糊比對景點名稱，沒給定不做篩選
         one_page_count = query_page*12
 
         connection_object = taipei_pool.get_connection()
