@@ -1,3 +1,9 @@
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
+let checkNameInputValue;
+let checkEmailInputValue;
+let checkPasswordInputValue;
+
 // 檢查會員登入狀態
 const checkLogin = document.querySelector(".function");
 const checkLogout = document.querySelector(".logout");
@@ -66,8 +72,15 @@ function homeLogin() {
   hidden.style.display = "block";
   loginForm.style.display = "block";
   loginForm.classList.add("fadeIn");
-  loginButton.disabled = true;
-
+  loginEmail.value = "test@gmail.com";
+  loginPassword.value = "test12345";
+  checkEmailInputValue = true;
+  checkPasswordInputValue = true;
+  if (checkEmailInputValue === true && checkPasswordInputValue === true) {
+    loginButton.disabled = false;
+  } else {
+    loginButton.disabled = true;
+  }
   clickRegister.addEventListener("click", () => {
     eyeCloseRegisterPassword.style.top = "18%";
     registerForm.style.display = "block";
@@ -140,9 +153,6 @@ closeRegister.addEventListener("click", () => {
   hidden.style.display = "none";
 });
 
-let checkNameInputValue;
-let checkEmailInputValue;
-let checkPasswordInputValue;
 const registerNameMessage = document.getElementById("registerNameMessage");
 const registerEmailMessage = document.getElementById("registerEmailMessage");
 const registerPasswordMessage = document.getElementById("registerPasswordMessage");
@@ -272,9 +282,6 @@ const successWarnMessage = document.getElementById("warn");
 const loginBottomMessage = document.querySelector("#loginBottomMessage");
 const login = document.querySelector("#login");
 login.addEventListener("click", () => {
-  const loginEmail = document.getElementById("loginEmail").value;
-  const loginPassword = document.getElementById("loginPassword").value;
-
   fetch("/api/user/auth", {
     method: "PUT",
     headers: {
@@ -282,8 +289,8 @@ login.addEventListener("click", () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      "email": loginEmail,
-      "password": loginPassword,
+      "email": loginEmail.value,
+      "password": loginPassword.value,
     }),
   })
     .then(function (response) {
